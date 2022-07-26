@@ -1,0 +1,25 @@
+.part{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 50%;
+  transform-origin: bottom right;
+  z-index: 1;
+  transform: skew(20deg, 20deg);
+}
+.turning{
+  animation-name: infiniteTurn 1s  linear infinite;
+  -webkit-animation: infiniteTurn 1s linear infinite;
+  -moz-animation: infiniteTurn 1s linear infinite;
+  -o-animation: infiniteTurn 1s linear infinite;
+}
+
+@keyframes infiniteTurn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
