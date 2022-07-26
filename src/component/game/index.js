@@ -34,7 +34,7 @@ export default function Game({setSelected}) {
                     className='part'
                     style={
                     {
-                        background: index % 2 === 1 ? '#00ff00, #ff99cc 100%)' : '#6699ff',
+                        background: index % 2 === 1 ? '#00ff00' : '#6699ff',
                         transform: `rotate(${index * 30}deg) skew(40deg, 20deg)`
                     }
                     }>

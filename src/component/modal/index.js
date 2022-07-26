@@ -12,9 +12,9 @@ export default function Modal({selected,close}) {
       }
   return (
     <>
-        {selected != 0 &&
+        {selected !== 0 &&
             <ModalContainer className={selected ? 'show' : 'hide'}>
-                <img src={array[getRandomInt(3)]} alt="" />
+                <img src={array[getRandomInt(3)]} className='wantYou' alt="" />
                 <Text>{selected ? '恭喜中獎' + selected : '掰掰'}</Text>
                 <Button onClick={close}>確認</Button>
             </ModalContainer>
