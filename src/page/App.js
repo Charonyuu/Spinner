@@ -1,4 +1,4 @@
-import styled,{keyframes,css} from 'styled-components'
+import styled from 'styled-components'
 import './App.css';
 import { useEffect, useState } from 'react'
 import Game from '../component/game';
@@ -40,7 +40,7 @@ function App({tohome}) {
       localStorage.setItem('spinner',JSON.stringify(spinnerObject))
       setData(spinnerObject)
     }
-  },[])
+  },[isSettingOpen])
 
   const openSetting = () =>{
     setSelected(0)
@@ -95,7 +95,7 @@ const Title = styled.p`
 `
 const Footer = styled.div`
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   z-index: 999;
   width: 100%;
   display: flex;
@@ -103,7 +103,6 @@ const Footer = styled.div`
   align-items: flex-end;
 `
 const Menu = styled.div`
-box-sizing: border-box;
   position: absolute;
   top: 0;
   left: -120px;

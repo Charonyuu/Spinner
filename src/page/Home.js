@@ -9,6 +9,7 @@ import {
     Routes
   } from "react-router-dom";
 import App from './App';
+import HowToPlay from './howToPlay';
 
 function Home() {
   const [ishome,setIsHome] = useState(true)
@@ -21,9 +22,9 @@ function Home() {
               <Title>Spinner</Title>
               <Nav>
                   <Link className='link' onClick={()=>setIsHome(false)} to="/" >轉盤開始</Link>
-                  <Link className='link' to="/record">轉盤紀錄</Link>
-                  <Link className='link' to="/setting">遊戲設定</Link>
-                  <Link className='link' to="/howToPlay">遊戲玩法</Link>
+                  <Link className='link' onClick={()=>setIsHome(false)} to="/record">轉盤紀錄</Link>
+                  <Link className='link' onClick={()=>setIsHome(false)} to="/setting">遊戲設定</Link>
+                  <Link className='link' onClick={()=>setIsHome(false)} to="/howToPlay">遊戲玩法</Link>
               </Nav>
               <Footer>
                   <FooterInfo>Design By Charonyu</FooterInfo>
@@ -120,7 +121,9 @@ function Content({tohome}) {
       >
         <Routes location={displayLocation}>
           <Route path="/" element={<App tohome={tohome}/>}/>
-          <Route path="/setting" element={<section>Other</section>} />
+          <Route path="/record" element={<HowToPlay tohome={tohome}/>} />
+          <Route path="/setting" element={<HowToPlay tohome={tohome}/>} />
+          <Route path="/howToPlay" element={<HowToPlay tohome={tohome}/>} />
         </Routes>
       </div>
     );
