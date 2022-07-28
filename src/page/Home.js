@@ -9,7 +9,9 @@ import {
     Routes
   } from "react-router-dom";
 import App from './App';
-import HowToPlay from './howToPlay';
+import HowToPlay from './HowToPlay';
+import SettingPage from './SettingPage';
+
 
 function Home() {
   const [ishome,setIsHome] = useState(true)
@@ -122,7 +124,7 @@ function Content({tohome}) {
         <Routes location={displayLocation}>
           <Route path="/" element={<App tohome={tohome}/>}/>
           <Route path="/record" element={<HowToPlay tohome={tohome}/>} />
-          <Route path="/setting" element={<HowToPlay tohome={tohome}/>} />
+          <Route path="/setting" element={<SettingPage tohome={tohome}/>} />
           <Route path="/howToPlay" element={<HowToPlay tohome={tohome}/>} />
         </Routes>
       </div>

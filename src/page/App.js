@@ -52,7 +52,7 @@ function App({tohome}) {
       <Game setSelected={setSelected} data={data}/>
       <Modal selected={selected} close={()=>setSelected('')}/>
       <Footer>
-        <Players>
+        <Players length={data.players.length}>
           {data && data.players.map((_data,idx)=>
           <Player key={idx}>
             <p>{_data.name}</p>
@@ -147,12 +147,14 @@ const Players = styled.div`
   height: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: ${props => props.length > 4 ? 'flex-start' : 'center'};
   color: white;
+  flex-wrap: wrap;
+  
 `
 const Player = styled.div`
   width: 100px;
-  height: auto;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: space-around;

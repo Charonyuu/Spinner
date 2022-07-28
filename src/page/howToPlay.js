@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import arrow from '../image/whiteArrow.png';
 
-export default function howToPlay({tohome}) {
+export default function HowToPlay({tohome}) {
   return (
     <Container>
         <Arrow onClick={tohome} src={arrow} alt=''/>

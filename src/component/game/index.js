@@ -20,6 +20,8 @@ export default function Game({setSelected,data}) {
           array = array.concat(players)
         }
         setPartsArray(array)
+      }else{
+        setPartsArray(players)
       }
     },[data])
 

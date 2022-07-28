@@ -21,10 +21,14 @@ export default function Modal({isSettingOpen,close}) {
         }
         setChange(change => ({...change,playerNum: parseInt(e.target.value), players: array}))
     }
-    // const cancel = () =>{
-    //     setChange(settingData);
-    //     close() 
-    // }
+    const cancel = () =>{
+        setChange(settingData);
+        close() 
+    }
+    const save = () =>{
+        localStorage.setItem('spinner',JSON.stringify(change))
+        close() 
+    }
 
     return (
     <>
@@ -34,7 +38,7 @@ export default function Modal({isSettingOpen,close}) {
                 <Text>人數：</Text>
                 <select className='select' onChange={(e) => changePlayerNumber(e)}>
                     {playerNumArray.map((num,idx)=>
-                        <option key={idx}>{num}</option>
+                        <option key={idx} selected={settingData.playerNum === num && 'selected'}>{num}</option>
                     )}
                 </select>
             </List>
@@ -48,13 +52,13 @@ export default function Modal({isSettingOpen,close}) {
                 <Text>旋轉速度：</Text>
                 <select className='select'>
                     {speedArray.map((num,idx)=>
-                    <option key={idx}>{num}</option>
+                    <option key={idx} selected={settingData.speed === num && 'selected'}>{num}</option>
                     )}
                 </select>
             </List>
             <ButtonGroup>
-                <Button onClick={close}>取消</Button>
-                <Button onClick={close}>確認</Button>
+                <Button onClick={cancel}>取消</Button>
+                <Button onClick={save}>確認</Button>
             </ButtonGroup>
         </ModalContainer>
         }
@@ -63,6 +67,7 @@ export default function Modal({isSettingOpen,close}) {
 }
 
 const ModalContainer = styled.div`
+    box-sizing: content-box;
     position: fixed;
     width: 350px;
     min-height: 400px;
@@ -83,7 +88,7 @@ const List = styled.div`
     font-size: 24px;
     font-weight: 700;
     color: black;
-    margin: 0;
+    margin: 20px 0 0;
 `
 const Text = styled.div`
     font-size: 24px;
@@ -109,15 +114,7 @@ const Button = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 10px;
-`
-const Player = styled.div`
-  width: 100px;
-  height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  color: white;
+    margin: 10px 10px;
 `
 const Color = styled.div`
   width: 20px;
