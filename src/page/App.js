@@ -20,7 +20,10 @@ function App({tohome}) {
     }else{
       const spinnerObject = {
         playerNum: 2,
-        players: [{name:'Player1',color: '#' + Math.floor(Math.random()*16777215).toString(16)},{name:'Player1',color: '#' + Math.floor(Math.random()*16777215).toString(16)}],
+        players: [
+          {name:'Player1',color: '#' + Math.floor(Math.random()*16777215).toString(16)},
+          {name:'Player2',color: '#' + Math.floor(Math.random()*16777215).toString(16)},
+        ],
         speed:1,
         language: 'chinese',
       }
