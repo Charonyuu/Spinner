@@ -11,7 +11,7 @@ import {
 import App from './App';
 import HowToPlay from './HowToPlay';
 import SettingPage from './SettingPage';
-
+import Record from './Record';
 
 function Home() {
   const [ishome,setIsHome] = useState(true)
@@ -123,7 +123,7 @@ function Content({tohome}) {
       >
         <Routes location={displayLocation}>
           <Route path="/" element={<App tohome={tohome}/>}/>
-          <Route path="/record" element={<HowToPlay tohome={tohome}/>} />
+          <Route path="/record" element={<Record tohome={tohome}/>} />
           <Route path="/setting" element={<SettingPage tohome={tohome}/>} />
           <Route path="/howToPlay" element={<HowToPlay tohome={tohome}/>} />
         </Routes>
