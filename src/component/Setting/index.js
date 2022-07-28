@@ -8,6 +8,7 @@ export default function Modal({isSettingOpen,close}) {
     const speedArray = [0.5,1,1.5]
     return (
     <>
+        {isSettingOpen !== 0 &&
         <ModalContainer className={isSettingOpen ? 'show' : 'hide'}>
             <List>
                 <Text>人數：</Text>
@@ -30,6 +31,7 @@ export default function Modal({isSettingOpen,close}) {
                 <Button onClick={close}>確認</Button>
             </ButtonGroup>
         </ModalContainer>
+        }
     </>
   )
 }

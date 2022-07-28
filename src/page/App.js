@@ -1,19 +1,33 @@
 import styled,{keyframes,css} from 'styled-components'
 import './App.css';
-import { useState } from 'react'
-import Game from './component/game';
-import Modal from './component/modal';
-import SettingModal from './component/Setting';
-import setting from './image/settings.png';
-import arrow from './image/rightArrow.png';
-import home from './image/home.png';
+import { useEffect, useState } from 'react'
+import Game from '../component/game';
+import Modal from '../component/modal';
+import SettingModal from '../component/Setting';
+import setting from '../image/settings.png';
+import arrow from '../image/rightArrow.png';
+import home from '../image/home.png';
 
 function App({tohome}) {
   const [players,setPlayers] =useState(['player1','player2','player1','player2','player1','player2','player1','player2','player1','player2','player1','player2'])
+  const [data,setData] = useState()
   const [selected,setSelected] = useState(0)
   const [openMenu,setOpenMenu]=useState(false) //小選單開關
-  const [isSettingOpen,setIsSettingOpen] = useState(false) //設定modal開關
-
+  const [isSettingOpen,setIsSettingOpen] = useState(0) //設定modal開關
+  useEffect(()=>{
+    if(localStorage.getItem('spinner')){
+      setData(JSON.parse(localStorage.getItem('spinner')))
+    }else{
+      const spinnerObject = {
+        playerNum: 2,
+        players: [{name:'Player1',color: '#' + Math.floor(Math.random()*16777215).toString(16)},{name:'Player1',color: '#' + Math.floor(Math.random()*16777215).toString(16)}],
+        speed:1,
+        language: 'chinese',
+      }
+      localStorage.setItem('spinner',JSON.stringify(spinnerObject))
+      setData(spinnerObject)
+    }
+  },[])
 
   const openSetting = () =>{
     setSelected(0)
@@ -26,14 +40,12 @@ function App({tohome}) {
       <Modal selected={selected} close={()=>setSelected('')}/>
       <Footer>
         <Players>
-          <Player>
-            <p>Player1</p>
-            <Color style={{background: '#6699ff'}}/>
-          </Player>
-          <Player>
-            <p>Player2</p>
-            <Color style={{background: '#00ff00'}}/>
-          </Player>
+          {data && data.players.map((_data,idx)=>
+          <Player key={idx}>
+            <p>{_data.name}</p>
+            <Color style={{background: _data.color}}/>
+          </Player>      
+          )}
         </Players>
         
       </Footer>

@@ -17,21 +17,21 @@ function Home() {
         <Container>
             {ishome 
             ?
-            <>
-            <Title>Spinner</Title>
-            <Nav>
-                
-                <Link className='link' onClick={()=>setIsHome(false)} to="/" >轉盤開始</Link>
-                <Link className='link' to="/setting">遊戲設定</Link>
-                <Link className='link' to="/howToPlay">遊戲玩法</Link>
-            </Nav>
-            <Footer>
-                <FooterInfo>Design By Charonyu</FooterInfo>
-                <FooterInfo>
-                    more imformation code in <a className='githubLink' href='https://github.com/Charonyuu/Spinner'>Github</a>    
-                </FooterInfo>
-            </Footer>
-            </>        
+            <HomePage className={ishome && 'fadeIn'}>
+              <Title>Spinner</Title>
+              <Nav>
+                  <Link className='link' onClick={()=>setIsHome(false)} to="/" >轉盤開始</Link>
+                  <Link className='link' to="/record">轉盤紀錄</Link>
+                  <Link className='link' to="/setting">遊戲設定</Link>
+                  <Link className='link' to="/howToPlay">遊戲玩法</Link>
+              </Nav>
+              <Footer>
+                  <FooterInfo>Design By Charonyu</FooterInfo>
+                  <FooterInfo>
+                      more imformation code in <a className='githubLink' href='https://github.com/Charonyuu/Spinner'>Github</a>    
+                  </FooterInfo>
+              </Footer>
+            </HomePage>        
             :
             <Content tohome={()=>setIsHome(true)}/>
             }
@@ -46,6 +46,11 @@ export default Home;
 const Container = styled.div`
   width: 100%;
   height: 100vh;
+  background: #222;
+`
+const HomePage = styled.div`
+  width: 100%;
+  height: 100%;
   position: relative;
   display: flex;
   align-items: center;
