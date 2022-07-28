@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react'
 import './index.css';
-import styled,{keyframes,css} from 'styled-components'
-
+import styled from 'styled-components'
+import dayjs from 'dayjs';
 export default function Game({setSelected,data}) {
   const {
     playerNum = 2,
@@ -36,10 +36,19 @@ export default function Game({setSelected,data}) {
           count -= 1
       }
       setTime(count) //知道時間是多少才能什麼時候停在哪個角度
+      const recordArray = localStorage.getItem('spinnerRecord') ? JSON.parse(localStorage.getItem('spinnerRecord')) : []
       setTimeout(() => {
-          setSelected(partsArray[Math.floor(count*360/30)].name)
+        let date = new Date
+        setSelected(partsArray[Math.floor(count*360/30)].name)
+        recordArray.push(
+          {time: dayjs(date).format('YYYY/MM/DD  HH:mm:ss'),
+           winner: partsArray[Math.floor(count*360/30)].name,
+           color: partsArray[Math.floor(count*360/30)].color}
+          )
+        localStorage.setItem('spinnerRecord',JSON.stringify(recordArray))
       }, "1000" * randomTime + 300)
-  }
+        
+    }
     return (
         <Circle>
             <Turner>

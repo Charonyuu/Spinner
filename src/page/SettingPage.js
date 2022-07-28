@@ -32,28 +32,30 @@ export default function SettingPage({tohome}) {
     <Container>
         <Arrow onClick={cancel} src={arrow} alt=''/>
         <Title>轉盤設定</Title>
-        <List>
-            <Text>人數：</Text>
-            <select className='select' onChange={(e) => changePlayerNumber(e)}>
-                {playerNumArray.map((num,idx)=>
-                    <option key={idx} value={num} selected={settingData.playerNum === num && 'selected'}>{num}</option>
-                )}
-            </select>
-        </List>
-        {settingData && change.players.map((_data,idx)=>
-        <List key={idx}>
-            <Text>{_data.name}</Text>
-            <Color style={{background: _data.color}}/>    
-        </List>
-        )}
-        <List>
-            <Text>旋轉速度：</Text>
-            <select className='select'>
-                <option value={0.5}>0.5</option>
-                <option value={1}>1</option>
-                <option value={1.5}>1.5</option>
-            </select>
-        </List>
+        <Lists>
+            <List>
+                <Text>人數：</Text>
+                <select className='select' onChange={(e) => changePlayerNumber(e)}>
+                    {playerNumArray.map((num,idx)=>
+                        <option key={idx} value={num} selected={settingData.playerNum === num && 'selected'}>{num}</option>
+                    )}
+                </select>
+            </List>
+            {settingData && change.players.map((_data,idx)=>
+            <List key={idx}>
+                <Text>{_data.name}</Text>
+                <Color style={{background: _data.color}}/>    
+            </List>
+            )}
+            <List>
+                <Text>旋轉速度：</Text>
+                <select className='select'>
+                    <option value={0.5}>0.5</option>
+                    <option value={1}>1</option>
+                    <option value={1.5}>1.5</option>
+                </select>
+            </List>
+        </Lists>
         <Button onClick={save}>確認</Button>
     </Container>
   )
@@ -66,15 +68,19 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  padding-top: 80px;
 `
 const Title = styled.p`
   font-size: 24px;
   position: absolute;
-  top: 15px;
   transform: translate(-50%,0%);
   left: 50%;
   color: white;
+  width: 100%;
+  height: 60px;
+  padding: 15px 0 0;
+  z-index: 2;
+  text-align: center;
+  background: #222;
 `
 const Text = styled.p`
   padding: 0 25px;
@@ -90,6 +96,22 @@ const Arrow = styled.img`
   transform: rotate(180deg);
   width: 24px;
   height: 24px;
+  z-index: 3;
+`
+const Lists = styled.div`
+    width: 100%;
+    height: 90%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    margin: 0;
+    padding-top: 90px;
+    overflow-y: scroll;
 `
 const List = styled.div`
     width: 100%;
