@@ -21,6 +21,10 @@ export default function Modal({isSettingOpen,close}) {
         }
         setChange(change => ({...change,playerNum: parseInt(e.target.value), players: array}))
     }
+    // const cancel = () =>{
+    //     setChange(settingData);
+    //     close() 
+    // }
     
     return (
     <>
@@ -49,7 +53,7 @@ export default function Modal({isSettingOpen,close}) {
                 </select>
             </List>
             <ButtonGroup>
-                <Button onClick={close}>取消</Button>
+                <Button onClick={cancel}>取消</Button>
                 <Button onClick={close}>確認</Button>
             </ButtonGroup>
         </ModalContainer>
