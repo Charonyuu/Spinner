@@ -25,7 +25,7 @@ export default function Modal({isSettingOpen,close}) {
     //     setChange(settingData);
     //     close() 
     // }
-    
+
     return (
     <>
         {isSettingOpen !== 0 &&
@@ -53,7 +53,7 @@ export default function Modal({isSettingOpen,close}) {
                 </select>
             </List>
             <ButtonGroup>
-                <Button onClick={cancel}>取消</Button>
+                <Button onClick={close}>取消</Button>
                 <Button onClick={close}>確認</Button>
             </ButtonGroup>
         </ModalContainer>
