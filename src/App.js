@@ -8,7 +8,7 @@ import setting from './image/settings.png';
 import arrow from './image/rightArrow.png';
 import home from './image/home.png';
 
-function App() {
+function App({tohome}) {
   const [players,setPlayers] =useState(['player1','player2','player1','player2','player1','player2','player1','player2','player1','player2','player1','player2'])
   const [selected,setSelected] = useState(0)
   const [openMenu,setOpenMenu]=useState(false) //小選單開關
@@ -38,7 +38,7 @@ function App() {
         
       </Footer>
       <Menu className={openMenu && 'openMenu'}>
-        <HomeIcon src={home} alt=''/>
+        <HomeIcon onClick={tohome} src={home} alt=''/>
         <SettingIcon src={setting} alt='' onClick={openSetting}/>
         <Arrow  onClick={()=>setOpenMenu(!openMenu)}>
           <ArrowIcon openMenu={openMenu} src={arrow} alt='' />
