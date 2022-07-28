@@ -27,6 +27,16 @@
   -moz-animation: infiniteTurn 1s linear infinite;
   -o-animation: infiniteTurn 1s linear infinite;
 }
+.openMenu{
+  position: absolute;
+  left:0 !important;
+}
+.closeArrow{
+  
+  transform: rotate(180deg);
+
+}
+
 .part{
   position: absolute;
   top: 0;

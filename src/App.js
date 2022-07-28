@@ -3,11 +3,22 @@ import './App.css';
 import { useState } from 'react'
 import Game from './component/game';
 import Modal from './component/modal';
-import setting from './image/settings.png'
+import SettingModal from './component/Setting';
+import setting from './image/settings.png';
+import arrow from './image/rightArrow.png';
+import home from './image/home.png';
+
 function App() {
   const [players,setPlayers] =useState(['player1','player2','player1','player2','player1','player2','player1','player2','player1','player2','player1','player2'])
   const [selected,setSelected] = useState(0)
+  const [openMenu,setOpenMenu]=useState(false) //小選單開關
+  const [isSettingOpen,setIsSettingOpen] = useState(false) //設定modal開關
 
+
+  const openSetting = () =>{
+    setSelected(0)
+    setIsSettingOpen(true)
+  } 
   return (
     <Container>
       <Title>Spinner</Title>
@@ -26,7 +37,14 @@ function App() {
         </Players>
         
       </Footer>
-      <SettingBtn><img src={setting} alt='' /></SettingBtn>
+      <Menu className={openMenu && 'openMenu'}>
+        <HomeIcon src={home} alt=''/>
+        <SettingIcon src={setting} alt='' onClick={openSetting}/>
+        <Arrow  onClick={()=>setOpenMenu(!openMenu)}>
+          <ArrowIcon openMenu={openMenu} src={arrow} alt='' />
+        </Arrow>
+      </Menu>
+      <SettingModal isSettingOpen={isSettingOpen} close={()=>setIsSettingOpen(false)}/>
     </Container>
   );
 }
@@ -59,17 +77,46 @@ const Footer = styled.div`
   justify-content: space-between;
   align-items: flex-end;
 `
-const SettingBtn = styled.div`
+const Menu = styled.div`
+box-sizing: border-box;
   position: absolute;
   top: 0;
-  right: 0;
-  width: 50px;
+  left: -120px;
+  width: 120px;
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 0 5px 5px 0;
+  transition: all 1s ease-in-out;
+  padding-right: 10px;
+`
+const HomeIcon = styled.img`
+  width: 30px;
+  height: 30px;
+`
+const SettingIcon = styled.img`
+  width: 30px;
+  height: 30px;
+`
+const Arrow = styled.div`
+  position: absolute;
+  top: 5px;
+  right: -18px;
+  width: 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  background-color: rgb(198, 207, 255);
-  border-radius: 5px;
+  background-color: white;
+  border-radius: 0 5px 5px 0;
+`
+const ArrowIcon = styled.img`
+  transition: all 1s ease-in-out;
+  height: 15px;
+  width: 13px;
+  transform: ${props => props.openMenu && 'rotate(180deg)'};
 `
 const Players = styled.div`
   width: 100%;
