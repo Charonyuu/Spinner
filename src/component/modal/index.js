@@ -1,5 +1,5 @@
 import React from 'react'
-import styled,{keyframes,css} from 'styled-components'
+import styled from 'styled-components'
 import picture1 from '../../image/you0.jpeg';
 import picture2 from '../../image/you2.jpeg';
 import picture3 from '../../image/you3.jpeg';

@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import './index.css';
 import styled from 'styled-components'
 import dayjs from 'dayjs';
+
 export default function Game({setSelected,data}) {
   const {
     playerNum = 2,
