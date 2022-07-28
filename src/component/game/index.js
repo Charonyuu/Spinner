@@ -1,40 +1,56 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import './index.css';
 import styled,{keyframes,css} from 'styled-components'
 
-export default function Game({setSelected}) {
+export default function Game({setSelected,data}) {
+  const {
+    playerNum = 2,
+    players = {},
+    speed = 1,
+  } = data
     const [turning,setTurning] = useState(false)
     const [time,setTime] = useState(0)
-    let array = ['player1','player2','player1','player2','player1','player2','player1','player2','player1','player2','player1','player2']
+    const [partsArray,setPartsArray] = useState([])
+
+    
+    useEffect(()=>{
+      if(playerNum !== 12){
+        let array = []
+        for(let i = 0 ; i < 12/playerNum ; i++){
+          array = array.concat(players)
+        }
+        setPartsArray(array)
+      }
+    },[data])
 
     const start = () =>{
-        let randomTime = (Math.floor(Math.random()*1000))/100 //隨機轉時間
-        setTurning(true) //設定是否在轉，及紀錄上次時間
-        setTimeout(() => {
-            setTurning(false)
-        }, "1000" * randomTime)
-        let count = randomTime
-        while (count > 1){ //減到一秒內乘360就知道跑了幾度
-            count -= 1
-        }
-        setTime(count) //知道時間是多少才能什麼時候停在哪個角度
-        setTimeout(() => {
-            setSelected(array[Math.floor(count*360/30)])
-        }, "1000" * randomTime + 300)
-    }
+      let randomTime = (Math.floor(Math.random()*1000))/100 //隨機轉時間
+      setTurning(true) //設定是否在轉，及紀錄上次時間
+      setTimeout(() => {
+          setTurning(false)
+      }, "1000" * randomTime)
+      let count = randomTime
+      while (count > 1){ //減到一秒內乘360就知道跑了幾度
+          count -= 1
+      }
+      setTime(count) //知道時間是多少才能什麼時候停在哪個角度
+      setTimeout(() => {
+          setSelected(partsArray[Math.floor(count*360/30)].name)
+      }, "1000" * randomTime + 300)
+  }
     return (
         <Circle>
             <Turner>
                 <CenterPoint onClick={start}>
                     <Pointer  time={time} className={turning && 'turning'}/>
                 </CenterPoint> 
-                { array.map((_data,index)=>
+                { partsArray.map((_data,index)=>
                 <div 
                     key={index} 
                     className='part'
                     style={
                     {
-                        background: index % 2 === 1 ? '#00ff00' : '#6699ff',
+                        background: _data.color,
                         transform: `rotate(${index * 30}deg) skew(40deg, 20deg)`
                     }
                     }>

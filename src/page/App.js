@@ -9,11 +9,21 @@ import arrow from '../image/rightArrow.png';
 import home from '../image/home.png';
 
 function App({tohome}) {
-  const [players,setPlayers] =useState(['player1','player2','player1','player2','player1','player2','player1','player2','player1','player2','player1','player2'])
-  const [data,setData] = useState()
-  const [selected,setSelected] = useState(0)
+  const [data,setData] = useState(
+    {
+      playerNum: 2,
+      players: [
+        {name:'Player1',color: '#' + Math.floor(Math.random()*16777215).toString(16)},
+        {name:'Player2',color: '#' + Math.floor(Math.random()*16777215).toString(16)},
+      ],
+      speed:1,
+      language: 'chinese',
+    }
+  )
+  const [selected,setSelected] = useState(0) //誰中獎了
   const [openMenu,setOpenMenu]=useState(false) //小選單開關
   const [isSettingOpen,setIsSettingOpen] = useState(0) //設定modal開關
+  
   useEffect(()=>{
     if(localStorage.getItem('spinner')){
       setData(JSON.parse(localStorage.getItem('spinner')))
@@ -39,7 +49,7 @@ function App({tohome}) {
   return (
     <Container>
       <Title>Spinner</Title>
-      <Game setSelected={setSelected} players={players}/>
+      <Game setSelected={setSelected} data={data}/>
       <Modal selected={selected} close={()=>setSelected('')}/>
       <Footer>
         <Players>
@@ -49,8 +59,7 @@ function App({tohome}) {
             <Color style={{background: _data.color}}/>
           </Player>      
           )}
-        </Players>
-        
+        </Players> 
       </Footer>
       <Menu className={openMenu && 'openMenu'}>
         <HomeIcon onClick={tohome} src={home} alt=''/>
@@ -65,6 +74,7 @@ function App({tohome}) {
 }
 
 export default App;
+
 const Container = styled.div`
   width: 100%;
   height: 100vh;
@@ -153,4 +163,5 @@ const Color = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border: 1px solid #fff;
 `
