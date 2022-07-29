@@ -1,9 +1,7 @@
-.wantYou{
-    width: 300px;
-    height: 200px;
-    object-fit: contain;
-
+.select{
+    height: 30px;
 }
+
 .show{    
     left: 50%;
     bottom: 50%;
@@ -15,7 +13,7 @@
     bottom: -400px;
     transform: translate(-50%,50%);
     animation: hide 1s ease-in-out;
-
+    display: none;
 }
 @keyframes show {
     0%{
@@ -34,11 +32,19 @@
     0%{ 
         bottom: 50%;
         transform: translate(-50%,50%);
+        display: block;
     }
     30%{
         bottom: 60%;
     }
-    100%{
+    90%{
         bottom: -400px;
     }
+    100%{
+        display: none;
+    }
+}
+.colorPicker{
+    justify-content: center;
+    padding: 10px 5px !important;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import './index.css';
 
-export default function Modal({isSettingOpen,close}) {
+export default function Setting({isSettingOpen,close}) {
     
     const playerNumArray = [2,3,4,6,12]
     const speedArray = [0.5,1,1.5]
@@ -36,9 +36,9 @@ export default function Modal({isSettingOpen,close}) {
         <ModalContainer className={isSettingOpen ? 'show' : 'hide'}>
             <List>
                 <Text>人數：</Text>
-                <select className='select' onChange={(e) => changePlayerNumber(e)}>
+                <select className='select' onChange={(e) => changePlayerNumber(e)} defaultValue={settingData.playerNum}>
                     {playerNumArray.map((num,idx)=>
-                        <option key={idx} selected={settingData.playerNum === num && 'selected'}>{num}</option>
+                        <option key={idx}>{num}</option>
                     )}
                 </select>
             </List>
