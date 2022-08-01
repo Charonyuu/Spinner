@@ -45,7 +45,13 @@ function App({tohome}) {
   const openSetting = () =>{
     setSelected(0)
     setIsSettingOpen(true)
+    setOpenMenu(false)
   } 
+  const arrowOpen = () =>{
+    if (isSettingOpen !== false) {
+      setOpenMenu(!openMenu)
+    }
+  }
   return (
     <Container>
       <Title>Spinner</Title>
@@ -64,11 +70,11 @@ function App({tohome}) {
       <Menu className={openMenu && 'openMenu'}>
         <HomeIcon onClick={tohome} src={home} alt=''/>
         <SettingIcon src={setting} alt='' onClick={openSetting}/>
-        <Arrow  onClick={()=>setOpenMenu(!openMenu)}>
+        <Arrow onClick={arrowOpen}>
           <ArrowIcon openMenu={openMenu} src={arrow} alt='' />
         </Arrow>
       </Menu>
-      <SettingModal isSettingOpen={isSettingOpen} close={()=>setIsSettingOpen(false)}/>
+      <SettingModal isSettingOpen={isSettingOpen} setIsSettingOpen={setIsSettingOpen} close={()=>setIsSettingOpen(false)}/>
     </Container>
   );
 }
@@ -84,6 +90,7 @@ const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   background: #222;
+  overflow: hidden;
   `
 const Title = styled.p`
   font-size: 60px;

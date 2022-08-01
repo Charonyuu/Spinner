@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import './index.css';
+import arrow from '../../image/rightArrow.png';
+import SettingPlayerModal from '../SettingPlayerModal';
 
-export default function Setting({isSettingOpen,close}) {
+export default function Setting({isSettingOpen,close,setIsSettingOpen}) {
     
     const playerNumArray = [2,3,4,6,12]
     const speedArray = [0.5,1,1.5]
@@ -30,6 +32,13 @@ export default function Setting({isSettingOpen,close}) {
         close() 
     }
 
+    const [playerId,setPlayerId] = useState(false)
+
+    const openSetPlayer = (idx) =>{
+        setPlayerId(idx)
+        setIsSettingOpen(false)
+    }
+    console.log(playerId);
     return (
     <>
         {isSettingOpen !== 0 &&
@@ -45,7 +54,10 @@ export default function Setting({isSettingOpen,close}) {
             {settingData && change.players.map((_data,idx)=>
             <List key={idx}>
                 <Text>{_data.name}</Text>
-                <Color style={{background: _data.color}}/>    
+                <Text>
+                    <Color style={{background: _data.color}}/> 
+                    <SettingArrow src={arrow} onClick={()=>openSetPlayer(idx)}/>
+                </Text> 
             </List>
             )}
             <List>
@@ -62,13 +74,15 @@ export default function Setting({isSettingOpen,close}) {
             </ButtonGroup>
         </ModalContainer>
         }
+        <SettingPlayerModal change={change} setChange={setChange} playerId={playerId} close={()=>{setPlayerId(-1);setIsSettingOpen(true)}}/>
+
     </>
   )
 }
 
 const ModalContainer = styled.div`
     box-sizing: content-box;
-    position: fixed;
+    position: absolute;
     width: 350px;
     min-height: 400px;
     z-index: 999;
@@ -84,17 +98,17 @@ const List = styled.div`
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: baseline;
     font-size: 24px;
     font-weight: 700;
     color: black;
     margin: 20px 0 0;
 `
 const Text = styled.div`
-    font-size: 24px;
-    font-weight: 700;
-    color: black;
-    margin: 0;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 const ButtonGroup = styled.div`
     width: 100%;
@@ -121,4 +135,11 @@ const Color = styled.div`
   height: 20px;
   border-radius: 50%;
   border: 1px solid #000;
+`
+const SettingArrow = styled.img`
+  width: 15px;
+  height: 15px;
+  margin-right: -5px;
+  margin-left: 5px;
+  cursor: pointer;
 `

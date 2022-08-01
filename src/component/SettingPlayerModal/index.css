@@ -2,48 +2,43 @@
     height: 30px;
 }
 
-.show{    
+/* .show{    
     left: 50%;
     bottom: 50%;
     transform: translate(-50%,50%);
-    animation: show 1s ease-in-out
+    animation: show 1s ease-in-out;
 }
 .hide{
     left: 50%;
     bottom: -400px;
     transform: translate(-50%,50%);
     animation: hide 1s ease-in-out;
-    display: none;
 }
 @keyframes show {
     0%{
-        bottom: 0px;
+        left: 0px;
     }
     70%{
-        bottom: 60%;
+        left: 60%;
     }
     100%{
-        bottom: 50%;
+        left: 50%;
         transform: translate(-50%,50%);
         
     }
 }
 @keyframes hide {
     0%{ 
-        bottom: 50%;
+        left: 50%;
         transform: translate(-50%,50%);
-        display: block;
     }
     30%{
-        bottom: 60%;
-    }
-    90%{
-        bottom: -400px;
+        left: 60%;
     }
     100%{
-        display: none;
+        left: -400px;
     }
-}
+} */
 .colorPicker{
     justify-content: center;
     padding: 10px 5px !important;

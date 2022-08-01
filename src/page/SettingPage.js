@@ -31,7 +31,6 @@ export default function SettingPage({tohome}) {
     }
 
     const [openPlayerSetting,setOpenPlayerSetting] = useState(false)
-    console.log(0 === false);
   return (
     <Container>
         <Arrow onClick={cancel} src={arrow} alt=''/>
@@ -56,7 +55,7 @@ export default function SettingPage({tohome}) {
             )}
             <List>
                 <Text>旋轉速度：</Text>
-                <select className='select'>
+                <select className='select' defaultValue={settingData.speed}>
                     <option value={0.5}>0.5</option>
                     <option value={1}>1</option>
                     <option value={1.5}>1.5</option>
@@ -159,8 +158,8 @@ const Color = styled.div`
   border: 1px solid #000;
 `
 const SettingArrow = styled.img`
-  width: 24px;
-  height: 24px;
+  width: 15px;
+  height: 15px;
   margin-right: -10px;
   margin-left: 5px;
   cursor: pointer;
