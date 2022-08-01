@@ -7,13 +7,11 @@ export default function Game({setSelected,data}) {
   const {
     playerNum = 2,
     players = {},
-    speed = 1,
   } = data
     const [turning,setTurning] = useState(false)
     const [time,setTime] = useState(0)
     const [partsArray,setPartsArray] = useState([])
 
-    
     useEffect(()=>{
       if(playerNum !== 12){
         let array = []
